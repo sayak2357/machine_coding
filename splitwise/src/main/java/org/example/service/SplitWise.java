@@ -63,4 +63,15 @@ public class SplitWise {
         if(!flag)
             System.out.println("No balance");
     }
+    public void showStatusFor(String userId){
+        User currUser = findUser(userId);
+        int index = userMap.get(currUser);
+        for(int j=0;j<userCount;j++){
+            if(j!=index && owes[index][j]>0){
+                User giver = reverseMap.get(j);
+                User taker = currUser;
+                System.out.println(taker.getUserName()+" owes "+giver.getUserName()+": "+owes[index][j]);
+            }
+        }
+    }
 }

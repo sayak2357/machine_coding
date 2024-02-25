@@ -52,6 +52,8 @@ public class Main {
                 if(ops.equals("EQUAL"))
                     service.equalSplit(amount,sourceUid,uids);
             }
+            else if(n==2)
+                service.showStatusFor(tuples[1]);
             else
                 service.showStatus();
         }
