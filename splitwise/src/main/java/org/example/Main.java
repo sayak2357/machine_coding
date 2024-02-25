@@ -51,6 +51,13 @@ public class Main {
                 String ops = tuples[4+count];
                 if(ops.equals("EQUAL"))
                     service.equalSplit(amount,sourceUid,uids);
+                else if(ops.equals("EXACT")){
+                    List<Double> amounts = new ArrayList<>();
+                    for(int i=0;i<count;i++){
+                        amounts.add(Double.parseDouble(tuples[5+count+i]));
+                    }
+                    service.exactSplit(amount,amounts,sourceUid,uids);
+                }
             }
             else if(n==2)
                 service.showStatusFor(tuples[1]);

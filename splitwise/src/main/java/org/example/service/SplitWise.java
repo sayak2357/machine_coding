@@ -35,6 +35,36 @@ public class SplitWise {
                 owes[sourceIndex][destIndex] += perHeadAmount;
             }
         }
+        normalise();
+    }
+    public void exactSplit(Double amount, List<Double> amounts, String source,List<String> userIds){
+        int n = userIds.size();
+        User currUser = findUser(source);
+        for(int i=0;i<n;i++){
+            String owesTo = userIds.get(i);
+            Double owesamount = amounts.get(i);
+            if(owesTo!=source){
+                User sourceUser = findUser(owesTo);
+                int sourceIndex = userMap.get(sourceUser);
+                int destIndex = userMap.get(currUser);
+                owes[sourceIndex][destIndex] += owesamount;
+            }
+        }
+        normalise();
+    }
+    private void normalise(){
+        for(int i=0;i<userCount;i++){
+            for(int j=i+1;j<userCount;j++){
+                if(i!=j && owes[i][j]>0 && owes[j][i]>0 && owes[i][j]>=owes[j][i]){
+                    owes[i][j] -= owes[j][i];
+                    owes[j][i] = 0;
+                }
+                if(i!=j && owes[i][j]>0 && owes[j][i]>0 && owes[i][j]<owes[j][i]){
+                    owes[j][i] -= owes[i][j];
+                    owes[i][j] = 0;
+                }
+            }
+        }
     }
     private User findUser(String uid){
         User res = null;
@@ -66,12 +96,16 @@ public class SplitWise {
     public void showStatusFor(String userId){
         User currUser = findUser(userId);
         int index = userMap.get(currUser);
+        boolean flag = false;
         for(int j=0;j<userCount;j++){
             if(j!=index && owes[index][j]>0){
                 User giver = reverseMap.get(j);
                 User taker = currUser;
+                flag = true;
                 System.out.println(taker.getUserName()+" owes "+giver.getUserName()+": "+owes[index][j]);
             }
         }
+        if(!flag)
+            System.out.println("No balance");
     }
 }
