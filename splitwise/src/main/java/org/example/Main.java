@@ -58,6 +58,13 @@ public class Main {
                     }
                     service.exactSplit(amount,amounts,sourceUid,uids);
                 }
+                else if(ops.equals("PERCENT")){
+                    List<Integer> percents = new ArrayList<>();
+                    for(int i=0;i<count;i++){
+                        percents.add(Integer.parseInt(tuples[5+count+i]));
+                    }
+                    service.percentSplit(amount,percents,sourceUid,uids);
+                }
             }
             else if(n==2)
                 service.showStatusFor(tuples[1]);

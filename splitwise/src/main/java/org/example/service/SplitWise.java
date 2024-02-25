@@ -52,6 +52,23 @@ public class SplitWise {
         }
         normalise();
     }
+    public void percentSplit(Double amount, List<Integer> percents, String sourceUserId,List<String> userIds){
+        int n = userIds.size();
+        User currUser = findUser(sourceUserId);
+        for(int i=0;i<n;i++){
+            String owesTo = userIds.get(i);
+
+            Double owesamount = (double) amount*percents.get(i)/100;
+            if(owesTo!=sourceUserId) {
+                User sourceUser = findUser(owesTo);
+                int sourceIndex = userMap.get(sourceUser);
+                int destIndex = userMap.get(currUser);
+                owes[sourceIndex][destIndex] += owesamount;
+            }
+
+        }
+        normalise();
+    }
     private void normalise(){
         for(int i=0;i<userCount;i++){
             for(int j=i+1;j<userCount;j++){
