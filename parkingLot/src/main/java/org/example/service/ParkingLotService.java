@@ -49,7 +49,7 @@ public class ParkingLotService {
     public void show(){
         Map<Integer, Car> slotCarMap = parkingLot.getSlotCarMap();
         for(Integer slot:slotCarMap.keySet()){
-            System.out.println(slot+" "+slotCarMap.get(slot));
+            System.out.println(slot+" "+slotCarMap.get(slot).getResgistrationNumber()+" "+slotCarMap.get(slot).getColor());
         }
     }
     public void free(Integer slot){
