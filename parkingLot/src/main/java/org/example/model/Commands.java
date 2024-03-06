@@ -13,7 +13,8 @@ public enum Commands {
     FIND_CAR("slot_number_for_registration_number"),
     FIND_CARS_OF_COLOR("slot_numbers_of_cars_with_color"),
 
-    FREE("free");
+    FREE("free"),
+    INVALID("invalid");
 
     private static final Map<String,Commands> ENUM_MAP;
 
@@ -33,7 +34,7 @@ public enum Commands {
     }
 
     public static Commands get (String value) {
-        return ENUM_MAP.get(value.toLowerCase());
+        return ENUM_MAP.containsKey(value.toLowerCase()) ? ENUM_MAP.get(value.toLowerCase()): INVALID;
     }
 
 }

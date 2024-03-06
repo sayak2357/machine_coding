@@ -51,7 +51,7 @@ public class Main {
                     color = arr[1];
                     parkingLotService.findSlotsOfCarWithColor(color);
                     break;
-                default:
+                case INVALID:
                     System.out.println("please enter valid command");
                     break;
                 }
