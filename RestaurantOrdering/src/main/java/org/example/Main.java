@@ -8,6 +8,8 @@ import org.example.model.Hotel;
 import org.example.repository.UserRepo;
 import org.example.service.BookingService;
 
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -28,6 +30,7 @@ public class Main {
         h1.setAddress("HSR");
         h1.setFood("biryani");
         h1.setQuantity(10);
+        h1.setRating(4);
         hotelsRepo.addHotel(h1);
 
         Hotel h2 = new Hotel();
@@ -35,11 +38,19 @@ public class Main {
         h2.setAddress("Bellandur");
         h2.setFood("dossa");
         h2.setQuantity(5);
+        h2.setRating(5);
         hotelsRepo.addHotel(h2);
 
 
-
+        System.out.println("hotels sorted by ratings "+printSet(hotelsRepo.getHotelAsPerRating()));
         bs.book(u1,h1);
         bs.book(u1,h2);
+    }
+    private static String printSet(Set<Hotel> hotels){
+        String res = "";
+        for(Hotel h:hotels){
+            res += h.getName()+" ";
+        }
+        return res;
     }
 }

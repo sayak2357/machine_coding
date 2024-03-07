@@ -5,6 +5,15 @@ public class Hotel {
     private String address;
     private String food;
     private Integer quantity;
+    private Integer rating;
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
     public String getName() {
         return name;
